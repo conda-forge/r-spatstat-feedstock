@@ -15,7 +15,8 @@ source:
   sha256: 9b68d9fbf985ada9b1584aa51d493c4cd06c27b33c51cd33248fdf77f7592f3e
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   script: R CMD INSTALL --build .
   skip: True  # [win32]
   rpaths:
@@ -24,6 +25,12 @@ build:
 
 requirements:
   build:
+    - posix  # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('cxx') }}        # [unix]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+  host:
     - r-base
     - r-matrix
     - r-abind
@@ -36,9 +43,6 @@ requirements:
     - r-spatstat.data >=1.2_0
     - r-spatstat.utils >=1.8_0
     - r-tensor
-    - posix  # [win]
-    - {{native}}toolchain  # [win]
-    - gcc  # [not win]
   run:
     - r-base
     - r-matrix
@@ -52,7 +56,6 @@ requirements:
     - r-spatstat.data >=1.2_0
     - r-spatstat.utils >=1.8_0
     - r-tensor
-    - libgcc  # [not win]
 
 test:
   commands:
