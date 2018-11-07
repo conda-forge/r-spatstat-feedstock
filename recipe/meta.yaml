@@ -1,5 +1,4 @@
-{% set version = "1.56-0" %}
-
+{% set version = '1.57-1' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,28 +7,30 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: spatstat_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/spatstat_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/spatstat/spatstat_{{ version }}.tar.gz
-  sha256: 9b68d9fbf985ada9b1584aa51d493c4cd06c27b33c51cd33248fdf77f7592f3e
+    - {{ cran_mirror }}/src/contrib/spatstat_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/spatstat/spatstat_{{ version }}.tar.gz
+  sha256: 79ffe4bde48c5e196dedc4347deccb4daa6703d72672c851a9e24af18a81fcd6
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  script: R CMD INSTALL --build .
-  skip: True  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed  # [win]
+    - {{posix}}coreutils  # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-matrix
@@ -40,11 +41,12 @@ requirements:
     - r-nlme
     - r-polyclip >=1.5_0
     - r-rpart
-    - r-spatstat.data >=1.2_0
-    - r-spatstat.utils >=1.8_0
+    - r-spatstat.data >=1.4_0
+    - r-spatstat.utils >=1.13_0
     - r-tensor
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-matrix
     - r-abind
     - r-deldir >=0.0_21
@@ -53,20 +55,29 @@ requirements:
     - r-nlme
     - r-polyclip >=1.5_0
     - r-rpart
-    - r-spatstat.data >=1.2_0
-    - r-spatstat.utils >=1.8_0
+    - r-spatstat.data >=1.4_0
+    - r-spatstat.utils >=1.13_0
     - r-tensor
 
 test:
   commands:
-    - $R -e "library('spatstat')"  # [not win]
+    - $R -e "library('spatstat')"           # [not win]
     - "\"%R%\" -e \"library('spatstat')\""  # [win]
 
 about:
-  home: http
+  home: http://www.spatstat.org
   license: GPL (>= 2)
   summary: Comprehensive open-source toolbox for analysing Spatial Point Patterns.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
