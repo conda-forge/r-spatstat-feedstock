@@ -32,31 +32,31 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base
-    - r-matrix
-    - r-abind
-    - r-deldir >=0.0_21
-    - r-goftest >=1.2_2
-    - r-mgcv
+    - r-spatstat.data >=1.4_2
     - r-nlme
-    - r-polyclip >=1.10_0
     - r-rpart
-    - r-spatstat.data >=1.4_0
-    - r-spatstat.utils >=1.15_0
+    - r-spatstat.utils >=1.17_0
+    - r-mgcv
+    - r-matrix
+    - r-deldir >=0.0_21
+    - r-abind
     - r-tensor
+    - r-polyclip >=1.10_0
+    - r-goftest >=1.2_2
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
-    - r-matrix
-    - r-abind
-    - r-deldir >=0.0_21
-    - r-goftest >=1.2_2
-    - r-mgcv
+    - r-spatstat.data >=1.4_2
     - r-nlme
-    - r-polyclip >=1.10_0
     - r-rpart
-    - r-spatstat.data >=1.4_0
-    - r-spatstat.utils >=1.15_0
+    - r-spatstat.utils >=1.17_0
+    - r-mgcv
+    - r-matrix
+    - r-deldir >=0.0_21
+    - r-abind
     - r-tensor
+    - r-polyclip >=1.10_0
+    - r-goftest >=1.2_2
 
 test:
   commands:
