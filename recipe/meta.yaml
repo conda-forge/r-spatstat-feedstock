@@ -21,42 +21,21 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}              # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('cxx') }}            # [not win]
-    - {{ compiler('m2w64_cxx') }}      # [win]
-    - {{ posix }}filesystem        # [win]
-    - {{ posix }}make
-    - {{ posix }}sed               # [win]
-    - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
   host:
     - r-base
+    - r-spatstat.core >=1.65_0
     - r-spatstat.data >=1.4_2
-    - r-nlme
-    - r-rpart
-    - r-spatstat.utils >=1.17_0
-    - r-mgcv
-    - r-matrix
-    - r-deldir >=0.0_21
-    - r-abind
-    - r-tensor
-    - r-polyclip >=1.10_0
-    - r-goftest >=1.2_2
+    - r-spatstat.geom >=1.65_0
+    - r-spatstat.linnet >=1.65_0
+    - r-spatstat.utils >=1.20_0
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
+    - r-spatstat.core >=1.65_0
     - r-spatstat.data >=1.4_2
-    - r-nlme
-    - r-rpart
-    - r-spatstat.utils >=1.17_0
-    - r-mgcv
-    - r-matrix
-    - r-deldir >=0.0_21
-    - r-abind
-    - r-tensor
-    - r-polyclip >=1.10_0
-    - r-goftest >=1.2_2
+    - r-spatstat.geom >=1.65_0
+    - r-spatstat.linnet >=1.65_0
+    - r-spatstat.utils >=1.20_0
 
 test:
   commands:
@@ -65,7 +44,7 @@ test:
 
 about:
   home: http://www.spatstat.org
-  license: GPL-2
+  license: GPL-2.0-or-later
   summary: Comprehensive open-source toolbox for analysing Spatial Point Patterns. Focused mainly on two-dimensional point patterns, including multitype/marked points, in any spatial region. Also supports three-dimensional point patterns, space-time point patterns in any number of dimensions, point patterns on a linear network,
     and patterns of other geometrical objects. Supports spatial covariate data such as pixel images. Contains over 2000 functions for plotting spatial data, exploratory data analysis, model-fitting, simulation, spatial sampling, model diagnostics, and formal inference. Data types include point patterns, line segment patterns,
     spatial windows, pixel images, tessellations, and linear networks. Exploratory methods include quadrat counts, K-functions and their simulation envelopes, nearest neighbour distance and empty space statistics, Fry plots, pair correlation function, kernel smoothed intensity, relative risk estimation with cross-validated
@@ -80,8 +59,8 @@ about:
 
 extra:
   recipe-maintainers:
-    - ocefpaf
     - conda-forge/r
+    - ocefpaf
 
 # Package: spatstat
 # Version: 1.61-0
