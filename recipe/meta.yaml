@@ -22,20 +22,23 @@ build:
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-    - r-spatstat.core >=1.65_0
-    - r-spatstat.data >=1.4_2
-    - r-spatstat.geom >=1.65_0
-    - r-spatstat.linnet >=1.65_0
-    - r-spatstat.utils >=1.20_0
+    - r-spatstat.core >=2.4_0
+    - r-spatstat.data >=2.1_2
+    - r-spatstat.geom >=2.3_2
+    - r-spatstat.linnet >=2.3_2
+    - r-spatstat.random >=2.1_0
+    - r-spatstat.utils >=2.3_0
   run:
     - r-base
-    - r-spatstat.core >=1.65_0
-    - r-spatstat.data >=1.4_2
-    - r-spatstat.geom >=1.65_0
-    - r-spatstat.linnet >=1.65_0
-    - r-spatstat.utils >=1.20_0
+    - r-spatstat.core >=2.4_0
+    - r-spatstat.data >=2.1_2
+    - r-spatstat.geom >=2.3_2
+    - r-spatstat.linnet >=2.3_2
+    - r-spatstat.random >=2.1_0
+    - r-spatstat.utils >=2.3_0
 
 test:
   commands:
