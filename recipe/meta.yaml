@@ -25,20 +25,22 @@ requirements:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-    - r-spatstat.core >=2.4_0
-    - r-spatstat.data >=2.1_2
-    - r-spatstat.geom >=2.3_2
-    - r-spatstat.linnet >=2.3_2
-    - r-spatstat.random >=2.1_0
-    - r-spatstat.utils >=2.3_0
+    - r-spatstat.data >=3.0_1
+    - r-spatstat.explore >=3.2_5
+    - r-spatstat.geom >=3.2_7
+    - r-spatstat.linnet >=3.1_3
+    - r-spatstat.model >=3.2_8
+    - r-spatstat.random >=3.2_1
+    - r-spatstat.utils >=3.0_3
   run:
     - r-base
-    - r-spatstat.core >=2.4_0
-    - r-spatstat.data >=2.1_2
-    - r-spatstat.geom >=2.3_2
-    - r-spatstat.linnet >=2.3_2
-    - r-spatstat.random >=2.1_0
-    - r-spatstat.utils >=2.3_0
+    - r-spatstat.data >=3.0_1
+    - r-spatstat.explore >=3.2_5
+    - r-spatstat.geom >=3.2_7
+    - r-spatstat.linnet >=3.1_3
+    - r-spatstat.model >=3.2_8
+    - r-spatstat.random >=3.2_1
+    - r-spatstat.utils >=3.0_3
 
 test:
   commands:
