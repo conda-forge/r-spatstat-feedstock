@@ -12,7 +12,7 @@ source:
   sha256: 7508ad4f6df4913f7772046949253d66b17d6293da15e14dc55e13db9fc527f7
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -21,6 +21,14 @@ requirements:
   build:
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-spatstat.data >=3.1_4      # [build_platform != target_platform]
+    - r-spatstat.explore >=3.3_3   # [build_platform != target_platform]
+    - r-spatstat.geom >=3.3_4      # [build_platform != target_platform]
+    - r-spatstat.linnet >=3.2_2    # [build_platform != target_platform]
+    - r-spatstat.model >=3.3_3     # [build_platform != target_platform]
+    - r-spatstat.random >=3.3_2    # [build_platform != target_platform]
+    - r-spatstat.univar >=3.1_1    # [build_platform != target_platform]
+    - r-spatstat.utils >=3.1_1     # [build_platform != target_platform]
   host:
     - r-base
     - r-spatstat.data >=3.1_4
@@ -59,7 +67,6 @@ about:
     point processes. Models may involve dependence on covariates, inter-point interaction, cluster formation and dependence on marks. Models are fitted by maximum likelihood, logistic regression, minimum contrast, and composite likelihood methods. A model can be fitted to a list of point patterns (replicated point pattern
     data) using the function mppm(). The model can include random effects and fixed effects depending on the experimental design, in addition to all the features listed above. Fitted point process models can be simulated, automatically. Formal hypothesis tests of a fitted model are supported (likelihood ratio test, analysis
     of deviance, Monte Carlo tests) along with basic tools for model selection (stepwise(), AIC()) and variable selection (sdr). Tools for validating the fitted model include simulation envelopes, residuals, residual plots and Q-Q plots, leverage and influence diagnostics, partial residuals, and added variable plots.
-  license_family: GPL2
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
