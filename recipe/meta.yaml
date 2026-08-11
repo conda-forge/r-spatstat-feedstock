@@ -3,7 +3,7 @@
 
 package:
   name: r-spatstat
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
@@ -17,6 +17,10 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -32,24 +36,24 @@ requirements:
     - r-spatstat.utils             # [build_platform != target_platform]
   host:
     - r-base
-    - r-spatstat.data >=3.1_6
-    - r-spatstat.explore >=3.4_3
-    - r-spatstat.geom >=3.4_1
-    - r-spatstat.linnet >=3.2_6
-    - r-spatstat.model >=3.3_6
-    - r-spatstat.random >=3.4_1
-    - r-spatstat.univar >=3.1_3
-    - r-spatstat.utils >=3.1_4
+    - r-spatstat.data >=3.1_9
+    - r-spatstat.explore >=3.8_2
+    - r-spatstat.geom >=3.8_2
+    - r-spatstat.linnet >=3.5_2
+    - r-spatstat.model >=3.7_2
+    - r-spatstat.random >=3.5_1
+    - r-spatstat.univar >=3.2_0
+    - r-spatstat.utils >=3.2_4
   run:
     - r-base
-    - r-spatstat.data >=3.1_6
-    - r-spatstat.explore >=3.4_3
-    - r-spatstat.geom >=3.4_1
-    - r-spatstat.linnet >=3.2_6
-    - r-spatstat.model >=3.3_6
-    - r-spatstat.random >=3.4_1
-    - r-spatstat.univar >=3.1_3
-    - r-spatstat.utils >=3.1_4
+    - r-spatstat.data >=3.1_9
+    - r-spatstat.explore >=3.8_2
+    - r-spatstat.geom >=3.8_2
+    - r-spatstat.linnet >=3.5_2
+    - r-spatstat.model >=3.7_2
+    - r-spatstat.random >=3.5_1
+    - r-spatstat.univar >=3.2_0
+    - r-spatstat.utils >=3.2_4
 
 test:
   commands:
